@@ -7,7 +7,11 @@
     <% end %>
   </table>
 <% else %>
-  <%= form_tag plans_path %>
+  <% if params[:zip_code] %>
+    <p>No plans found for that zip code </p>
+  <% end %>
+
+  <%= form_tag plans_path, method: :get %>
     <fieldset>
       <legend>Zip Code</legend>
 
