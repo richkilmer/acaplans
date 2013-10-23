@@ -1,16 +1,23 @@
 <section class="plan-filters">
+	
 
   <%= form_tag plans_path, method: :get do %>
 
     <fieldset>
       <%= hidden_field_tag :zip_code, params[:zip_code] %>
 
-      <legend>Filter Shipments</legend>
+	  <% if @level %>
+	    <p>Showing <%= Plan.level_name(@level) %> plans for <%= @plans.first.county.titleize %>, <%= @plans.first.state.titleize %>.</p>
+	  <% else %>
+		<p>Showing all plans for <%= @plans.first.county.titleize %>, <%= @plans.first.state.titleize %>.  Select a plan level to filter.</p>
+	  <% end %>
+
+      <legend>Filter Plans</legend>
 
       <ol>
         <li>
           <%= label_tag :level %>
-          <%= select_tag :level, options_for_select(@levels) %>
+          <%= select_tag :level, options_for_select(@levels, @level) %>
         </li>
       </ol>
 

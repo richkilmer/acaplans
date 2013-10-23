@@ -11,15 +11,25 @@ class PlansController < ApplicationController
   private
 
   def filtered_plans
-    plans = Plan.where(fips: Zip.where(code: params[:zip_code]).first.fips)
-    plans.where(level: params[:level]) if params[:level]
+    plans = plans_for_zip
+    plans = plans.where(level: level) if level
     plans
   end
 
   def levels_for(plans)
-    plans.map {|p| [p.level_name, p.level] }.
+    plans_for_zip.map {|p| [p.level_name, p.level] }.
           uniq.
-          sort { |l| l.last }.
-          reverse!
+          sort { |a, b| a.last <=> b.last }.
+          unshift ["All Plans", '-1']
+  end
+  
+  def level
+    @level ||= begin
+      params[:level] == "-1" ? nil : params[:level]
+    end
+  end
+  
+  def plans_for_zip
+    Plan.where(fips: Zip.where(code: params[:zip_code]).first.fips)
   end
 end

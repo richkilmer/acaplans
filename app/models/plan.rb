@@ -12,6 +12,10 @@ class Plan < ActiveRecord::Base
   validates :level, presence: true
 
   def level_name
-    Levels.invert[level]
+    Plan.level_name level
+  end
+  
+  def self.level_name(level)
+    Levels.invert[level.to_i]
   end
 end
