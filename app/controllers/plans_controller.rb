@@ -3,7 +3,7 @@ class PlansController < ApplicationController
     if params[:zip_code]
       @plans = filtered_plans
       if @plans
-        @levels = @plans.map {|p| [p.level, p.level_name] }.uniq.sort {|l| l.first }
+        @levels = levels_for(@plans)
       end
     end
   end
@@ -14,5 +14,12 @@ class PlansController < ApplicationController
     plans = Plan.where(fips: Zip.where(code: params[:zip_code]).first.fips)
     plans.where(level: params[:level]) if params[:level]
     plans
+  end
+
+  def levels_for(plans)
+    plans.map {|p| [p.level_name, p.level] }.
+          uniq.
+          sort { |l| l.last }.
+          reverse!
   end
 end
