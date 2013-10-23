@@ -29,27 +29,75 @@ namespace :db do
       state = state.upcase
       county = county.upcase
       fips_code = detect { |fips_code| fips_code.state == state && fips_code.county == county }
-      if fips_code
-        fips_code.code
-      else
-        raise "We have no fips code for #{state} / #{county}"
+      fips_code ? fips_code.code : nil
+    end
+=begin
+t.integer :fips
+t.string :state
+t.string :county
+t.integer :level
+t.string :issuer
+t.string :name
+t.string :plan_type
+t.string :rating_area
+t.integer :premium_adult_individual_27
+t.integer :premium_adult_individual_50
+t.integer :premium_family
+t.integer :premium_single_parent_family
+t.integer :premium_couple
+t.integer :premium_child
+=end
+
+    class String
+      def undollar
+        to_s.gsub(/\$/, '').to_f.to_i
       end
     end
-
-    puts "Loading ACA plan data..."
     
     Plan.delete_all
     
+    errors = []
+    
+    count = File.readlines("#{Rails.root}/data/QHP_Individual_Medical_Landscape.csv").size - 1
+    
+    puts "Loading #{count} ACA plans..."
+    
+    i = 0
+
     CSV.foreach("#{Rails.root}/data/QHP_Individual_Medical_Landscape.csv", :headers => true) do |line|
-      
+      i+=1
+      if i%50 == 0
+        puts "Loaded #{i} plans..."
+      end
+
       state = line[0]
       county = line[1]
+      fips = fips_codes.for(state, county)
+      level = Plan::Levels[line[2]]
+      issuer = line[3]
+      name = line[4]
+      plan_type = line[5]
+      rating_area = line[6]
+      premium_adult_individual_27 = line[7].undollar
+      premium_adult_individual_50 = line[8].undollar
+      premium_family = line[9].undollar
+      premium_single_parent_family = line[10].undollar
+      premium_couple = line[11].undollar
+      premium_child = line[12].undollar
       
-      Plan.create! fips:fips_codes.for(state, county), state:state, county:county
-      
+      errors << "#{state}/#{county}" unless fips
+      Plan.create fips:fips, state:state, county:county, level:level, issuer:issuer, 
+                  name:name, plan_type:plan_type, rating_area:rating_area,
+                  premium_adult_individual_27:premium_adult_individual_27,
+                  premium_adult_individual_50:premium_adult_individual_50,
+                  premium_family:premium_family,
+                  premium_single_parent_family:premium_single_parent_family,
+                  premium_couple:premium_couple,
+                  premium_child:premium_child
+                  
     end
     
-    
+    puts errors.uniq.inspect
     
   end
   
