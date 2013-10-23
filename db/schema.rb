@@ -13,6 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20131023153244) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "fuzzystrmatch"
+
   create_table "plans", force: true do |t|
     t.integer  "fips"
     t.string   "state"
@@ -32,7 +36,7 @@ ActiveRecord::Schema.define(version: 20131023153244) do
     t.datetime "updated_at"
   end
 
-  add_index "plans", ["fips"], name: "index_plans_on_fips"
+  add_index "plans", ["fips"], name: "index_plans_on_fips", using: :btree
 
   create_table "zips", force: true do |t|
     t.string   "code"
@@ -41,6 +45,6 @@ ActiveRecord::Schema.define(version: 20131023153244) do
     t.datetime "updated_at"
   end
 
-  add_index "zips", ["fips"], name: "index_zips_on_fips"
+  add_index "zips", ["fips"], name: "index_zips_on_fips", using: :btree
 
 end

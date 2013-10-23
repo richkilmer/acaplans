@@ -11,3 +11,6 @@ rake db:load_zipcodes (Note: this will take SOME TIME!)
 rake db:load_aca (Note: this will take SOME TIME!)
 
 rails s
+
+The data directory is excluded on Heroku, so use the toolbelt to push
+up the db instead of trying to run the rake tasks remotely.
