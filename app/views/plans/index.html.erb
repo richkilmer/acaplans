@@ -1,5 +1,7 @@
 <% if @plans %>
 
+  <p><%= link_to "Change my zip code!", root_url %></p>
+
   <%= render 'filters' %>
   <table>
     <% @plans.each do |plan| %>
@@ -12,7 +14,7 @@
 <% else %>
 
   <% if params[:zip_code] %>
-    <p>No plans found for that zip code</p>
+    <p>No plans found for that zip code!</p>
   <% end %>
 
   <%= form_tag plans_path, method: :get do %>
