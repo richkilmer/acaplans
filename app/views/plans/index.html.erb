@@ -1,0 +1,21 @@
+<% if @plans %>
+  <table>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.name.titleize %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <%= form_tag plans_index_path %>
+    <fieldset>
+      <legend>Zip Code</legend>
+
+      <%= text_field_tag :zip_code %>
+
+      <div class="form-actions">
+        <input type="submit" value="Go">
+      </div>
+    </fieldset>
+  </form>
+<% end %>
