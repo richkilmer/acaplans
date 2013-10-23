@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   def index
-    if params[:zip_code]
+    if params[:zip_code] && zip
       @plans = filtered_plans
       if @plans
         @levels = levels_for(@plans)
@@ -9,6 +9,10 @@ class PlansController < ApplicationController
   end
 
   private
+
+  def zip
+    @zip ||= Zip.where(code: params[:zip_code]).first
+  end
 
   def filtered_plans
     plans = plans_for_zip
