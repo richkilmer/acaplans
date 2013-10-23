@@ -14,7 +14,7 @@ namespace :db do
   desc "Load the aca data from the data files"
   task :load_aca => :environment do
     state_abbr = {}
-    CSV.foreach("#{Rails.root}/data/us_states.csv", :headers => true) do |line|
+    CSV.foreach("#{Rails.root}/data/us_states.csv") do |line|
       state_abbr[line[1]] = line[2]
     end
     
@@ -22,7 +22,9 @@ namespace :db do
     puts "Loading reference data..."
     fips_codes = []
     CSV.foreach("#{Rails.root}/data/us_fips_codes.csv", :headers => true) do |line|
-      fips_codes << FipsCode.new(state_abbr[line[0]], line[1].upcase, (line[2]+line[3]).to_i)
+      state = state_abbr[line[0]]
+      puts line unless state
+      fips_codes << FipsCode.new(state, line[1].upcase, (line[2]+line[3]).to_i)
     end
     
     def fips_codes.for(state, county)
@@ -31,6 +33,7 @@ namespace :db do
       fips_code = detect { |fips_code| fips_code.state == state && fips_code.county == county }
       fips_code ? fips_code.code : nil
     end
+    
 =begin
 t.integer :fips
 t.string :state
@@ -72,7 +75,7 @@ t.integer :premium_child
 
     CSV.foreach("#{Rails.root}/data/QHP_Individual_Medical_Landscape.csv", :headers => true) do |line|
       i+=1
-      if i%50 == 0
+      if i%100 == 0
         puts "Loaded #{i} plans..."
       end
 
@@ -103,7 +106,7 @@ t.integer :premium_child
                     premium_couple:premium_couple,
                     premium_child:premium_child
       rescue
-        puts "Error processing: #{line}"
+        puts "Error processing: #{i-1} / #{line}"
       end
                   
     end
