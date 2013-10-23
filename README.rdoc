@@ -1,28 +1,13 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I am using Ruby version 2 for this
 
-Things you may want to cover:
+To start do: 
 
-* Ruby version
+rake db:create:all
+rake db:migrate
 
-* System dependencies
+rake db:load_zipcodes (Note: this will take SOME TIME!)
+rake db:load_aca (Note: this will take SOME TIME!)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+rails s
