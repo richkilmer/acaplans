@@ -1,4 +1,6 @@
 <% if @plans %>
+
+  <%= render 'filters' %>
   <table>
     <% @plans.each do |plan| %>
       <tr>
@@ -6,12 +8,14 @@
       </tr>
     <% end %>
   </table>
+
 <% else %>
+
   <% if params[:zip_code] %>
     <p>No plans found for that zip code </p>
   <% end %>
 
-  <%= form_tag plans_path, method: :get %>
+  <%= form_tag plans_path, method: :get do %>
     <fieldset>
       <legend>Zip Code</legend>
 
@@ -21,5 +25,6 @@
         <input type="submit" value="Go">
       </div>
     </fieldset>
-  </form>
+  <% end %>
+
 <% end %>
