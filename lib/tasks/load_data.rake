@@ -85,6 +85,7 @@ t.integer :premium_child
         county = line[1]
         fips = fips_codes.for(state, county)
         level = Plan::Levels[line[2]]
+        raise "hell" unless level
         issuer = line[3]
         name = line[4]
         plan_type = line[5]
