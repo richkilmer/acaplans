@@ -9,12 +9,12 @@ class CreatePlans < ActiveRecord::Migration
       t.string :name
       t.string :plan_type
       t.string :rating_area
-      t.integer :premium_adult_individual_27
-      t.integer :premium_adult_individual_50
-      t.integer :premium_family
-      t.integer :premium_single_parent_family
-      t.integer :premium_couple
-      t.integer :premium_child
+      t.decimal :premium_adult_individual_27, :precision => 8, :scale => 2
+      t.decimal :premium_adult_individual_50, :precision => 8, :scale => 2
+      t.decimal :premium_family, :precision => 8, :scale => 2
+      t.decimal :premium_single_parent_family, :precision => 8, :scale => 2
+      t.decimal :premium_couple, :precision => 8, :scale => 2
+      t.decimal :premium_child, :precision => 8, :scale => 2
 
       t.timestamps
     end

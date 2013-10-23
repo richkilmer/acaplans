@@ -50,7 +50,7 @@ t.integer :premium_child
 
     class String
       def undollar
-        (to_s[1..-1].to_f * 100).to_i
+        to_s[1..-1].to_f
       end
     end
     
