@@ -8,7 +8,7 @@ class PlansController < ApplicationController
   private
 
   def filtered_plans
-    plans = Plans.where(fips: Zip.where(code: params[:zip_code]).first)
-    plans.where(plan_type: params[:plan_type]) if params[:plan_type]
+    plans = Plan.where(fips: Zip.where(code: params[:zip_code]).first)
+    plans.where(level: params[:level]) if params[:level]
   end
 end
