@@ -50,7 +50,13 @@ t.integer :premium_child
 
     class String
       def undollar
-        to_s.gsub(/\$/, '').to_f.to_i
+        (to_s[1..-1].to_f * 100).to_i
+      end
+    end
+    
+    class NilClass
+      def undollar
+        nil
       end
     end
     
@@ -70,34 +76,39 @@ t.integer :premium_child
         puts "Loaded #{i} plans..."
       end
 
-      state = line[0]
-      county = line[1]
-      fips = fips_codes.for(state, county)
-      level = Plan::Levels[line[2]]
-      issuer = line[3]
-      name = line[4]
-      plan_type = line[5]
-      rating_area = line[6]
-      premium_adult_individual_27 = line[7].undollar
-      premium_adult_individual_50 = line[8].undollar
-      premium_family = line[9].undollar
-      premium_single_parent_family = line[10].undollar
-      premium_couple = line[11].undollar
-      premium_child = line[12].undollar
+      begin
+
+        state = line[0]
+        county = line[1]
+        fips = fips_codes.for(state, county)
+        level = Plan::Levels[line[2]]
+        issuer = line[3]
+        name = line[4]
+        plan_type = line[5]
+        rating_area = line[6]
+        premium_adult_individual_27 = line[7].undollar
+        premium_adult_individual_50 = line[8].undollar
+        premium_family = line[9].undollar
+        premium_single_parent_family = line[10].undollar
+        premium_couple = line[11].undollar
+        premium_child = line[12].undollar
       
-      errors << "#{state}/#{county}" unless fips
-      Plan.create fips:fips, state:state, county:county, level:level, issuer:issuer, 
-                  name:name, plan_type:plan_type, rating_area:rating_area,
-                  premium_adult_individual_27:premium_adult_individual_27,
-                  premium_adult_individual_50:premium_adult_individual_50,
-                  premium_family:premium_family,
-                  premium_single_parent_family:premium_single_parent_family,
-                  premium_couple:premium_couple,
-                  premium_child:premium_child
+        errors << "#{state}/#{county}" unless fips
+        Plan.create fips:fips, state:state, county:county, level:level, issuer:issuer, 
+                    name:name, plan_type:plan_type, rating_area:rating_area,
+                    premium_adult_individual_27:premium_adult_individual_27,
+                    premium_adult_individual_50:premium_adult_individual_50,
+                    premium_family:premium_family,
+                    premium_single_parent_family:premium_single_parent_family,
+                    premium_couple:premium_couple,
+                    premium_child:premium_child
+      rescue
+        puts "Error processing: #{line}"
+      end
                   
     end
-    
-    puts errors.uniq.inspect
+    puts "Counties with errors:"
+    puts errors.uniq
     
   end
   
