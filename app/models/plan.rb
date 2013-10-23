@@ -8,5 +8,9 @@ class Plan < ActiveRecord::Base
     "Catastrophic" => 4
   }
 
-  validates :fips, presence: true 
+  validates :fips, presence: true
+
+  def level_name
+    Levels.invert[level]
+  end
 end
