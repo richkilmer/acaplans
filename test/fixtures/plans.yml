@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fips: 1
+  state: MyString
+  county: MyString
+  level: 1
+  issuer: MyString
+  name: MyString
+  plan_type: MyString
+  rating_area: MyString
+  premium_adult_individual_27: 1
+  premium_adult_individual_50: 1
+  premium_family: 1
+  premium_single_parent_family: 1
+  premium_couple: 1
+  premium_child: 1
+
+two:
+  fips: 1
+  state: MyString
+  county: MyString
+  level: 1
+  issuer: MyString
+  name: MyString
+  plan_type: MyString
+  rating_area: MyString
+  premium_adult_individual_27: 1
+  premium_adult_individual_50: 1
+  premium_family: 1
+  premium_single_parent_family: 1
+  premium_couple: 1
+  premium_child: 1
