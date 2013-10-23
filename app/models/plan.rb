@@ -9,6 +9,7 @@ class Plan < ActiveRecord::Base
   }
 
   validates :fips, presence: true
+  validates :level, presence: true
 
   def level_name
     Levels.invert[level]
