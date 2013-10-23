@@ -53,7 +53,7 @@ t.integer :premium_child
 
     class String
       def undollar
-        to_s[1..-1].to_f
+        to_s[1..-1]
       end
     end
     
