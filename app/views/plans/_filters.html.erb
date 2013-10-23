@@ -1,15 +1,25 @@
 <section class="plan-filters">
 
-   <% if @level %>
-	   <p>Showing <%= Plan.level_name(@level) %> plans for <%= @plans.first.county.titleize %>, <%= @plans.first.state.titleize %>.</p>
-   <% else %>
-	<p>Showing all plans for <%= @plans.first.county.titleize %>, <%= @plans.first.state.titleize %>.  Select a plan level to filter.</p>
-   <% end %>
-	
+  <% if @level %>
+    <p>
+      Showing <%= Plan.level_name(@level) %>
+      plans for <%= @plans.first.county.titleize %>,
+      <%= @plans.first.state.titleize %>.
+    </p>
+  <% else %>
+    <p>
+      Showing all plans for <%= @plans.first.county.titleize %>,
+      <%= @plans.first.state.titleize %>.
+      Select a plan level to filter.
+    </p>
+  <% end %>
+
   <ul class="levels">
-	<% @levels.each do |level| %>
-	  <li class="<%= @level.to_i == level[1] ? "selected" : "" %>"><%= link_to level[0], plans_path(zip_code:params[:zip_code], level:level[1]) %>
-	<% end %>
+  <% @levels.each do |level| %>
+    <li class="<%= @level.to_i == level[1] ? "selected" : "" %>">
+      <%= link_to level[0], plans_path(zip_code:params[:zip_code], level:level[1]) %>
+    </li>
+  <% end %>
   </ul>
 
 </section>
