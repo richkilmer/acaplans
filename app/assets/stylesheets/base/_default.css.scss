@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $base-font-family;
+  font-size: 100%; // ~16 px
+  font-weight: normal;
+  margin: 0 auto;
+  padding: 1em;
+  position: relative;
+  width: 90%;
+} // body

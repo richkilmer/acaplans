@@ -1,0 +1,46 @@
+// *****************************************************************************
+// TYPOGRAPHY VARIABLES
+// *****************************************************************************
+
+// ------------------------------------------------------------------
+//  Font Stacks
+// ------------------------------------------------------------------
+
+// Tungeste in 500 weight normal only
+$acaplans-stack1: 'Tungsten A', 'Tungsten B', "Helvetica Neue", Helvetica, Arial, sans-serif;
+// Archer in 500 and 800 weights, normal and italic styles; need to reduce post design to minimum
+$acaplans-stack2: 'Archer SSm A', 'Archer SSm B', Georgia, "Times New Roman", Times, serif;
+// Whitney in 400 and 700 weights, normal and italic styles
+$acaplans-stack3: 'Whitney SSm A', 'Whitney SSm B', "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+$body-stack: $acaplans-stack3;
+$legal-stack: Georgia, "Times New Roman", Times, serif;
+$code-stack: Menlo, Monaco, Consolas, "Courier New", monospace;
+
+$base-font-size: 13px !default;
+$base-line-height: 18px !default;
+
+//  Headings
+// ------------------------------------------------------------------
+$headings-font-family: $acaplans-stack1 !default;
+$headings-font-weight: 500 !default; // instead of browser default, bold
+$headings-font-color: '' !default; // empty to use BS default, $text-color
+
+$subheadings-font-family: $acaplans-stack2 !default;
+$subheadings-font-weight: 500 !default; // instead of browser default, bold
+$subheadings-font-color: '' !default; // empty to use BS default, $text-color
+
+//  Navigation
+// ------------------------------------------------------------------
+$nav-font-family:    $acaplans-stack2;
+$nav-font-weight:    normal; // instead of browser default, bold
+
+//  Body
+// ------------------------------------------------------------------
+$base-font-family: $body-stack !default;
+
+
+///  Special Case
+// ------------------------------------------------------------------
+$legal-font-family: $legal-stack !default;

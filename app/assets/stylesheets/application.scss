@@ -1,0 +1,46 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+/* Import the Compass Library */
+@import "compass";
+//@import "compass/css3/transition";
+
+/* Vendor */
+@import "vendor/_normalize.css.scss"; // Standardize between browsers/reset built in stylesheets
+@import "vendor/_keanu.css.scss"; // Standardize between browsers/reset built in stylesheets
+
+/* Functions not in Compass */
+@import "dependencies/mixins/_non-semantic-helpers.css.scss";
+@import "dependencies/mixins/_gradient-overrides.css.scss";
+
+/* Setup Paths */
+@import "dependencies/variables/_paths.css.scss";
+@import "dependencies/variables/_typography.css.scss";
+
+/* Variables, etc */
+@import "dependencies/variables/_colors.css.scss";
+@import "dependencies/variables/_z-index.css.scss";
+
+/* Load site styles */
+@import "base/_default.css.scss";
+@import "base/_buttons.css.scss";
+@import "base/tables/_tables.css.scss";
+
+/* Load Print stylesheet */
+@import "base/_print.css.scss";
+
+/* Components */
+@import "components/_modal.css.scss";
+
+/* Areas */
+@import "areas/plans.css.scss"

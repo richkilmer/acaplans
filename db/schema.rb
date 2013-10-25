@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20131023153244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "fuzzystrmatch"
 
   create_table "plans", force: true do |t|
     t.integer  "fips"
