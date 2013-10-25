@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+
+  before_filter :zip
+
   def index
     if params[:zip_code] && zip
       @plans = filtered_plans
@@ -26,13 +29,13 @@ class PlansController < ApplicationController
           sort { |a, b| a.last <=> b.last }.
           unshift ["All Plans", '-1']
   end
-  
+
   def level
     @level ||= begin
       params[:level] == "-1" ? nil : params[:level]
     end
   end
-  
+
   def plans_for_zip
     Plan.where(fips: Zip.where(code: params[:zip_code]).first.fips)
   end

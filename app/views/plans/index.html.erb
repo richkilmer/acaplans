@@ -1,32 +1,38 @@
 <% if @plans %>
 
-  <p><%= link_to "Change my zip code!", root_url %></p>
+  <section class="inside-page">
 
-  <%= render 'filters' %>
-  <table>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= plan.name.titleize %></td>
-      </tr>
-    <% end %>
-  </table>
+    <%= render 'filters' %>
+    <table>
+      <% @plans.each do |plan| %>
+        <tr>
+          <td><%= plan.name.titleize %></td>
+        </tr>
+      <% end %>
+    </table>
+  </section> <%# // .inside-page%>
 
 <% else %>
+  <section class="homepage">
+    <h1>Find Your Plan</h1>
+    <h2>Search all available ACA plans by your zip code!</h2>
 
-  <% if params[:zip_code] %>
-    <p>No plans found for that zip code!</p>
-  <% end %>
+    <% if params[:zip_code] %>
+      <p>No plans found for that zip code!</p>
+    <% end %>
 
-  <%= form_tag plans_path, method: :get do %>
-    <fieldset>
-      <legend>Zip Code</legend>
+    <%= form_tag plans_path, method: :get do %>
+      <fieldset>
+        <legend>Zip Code</legend>
 
-      <%= text_field_tag :zip_code %>
+        <%= label_tag :zipcode, 'Enter Your Home Zip Code' %>
+        <%= text_field_tag :zip_code %>
 
-      <div class="form-actions">
-        <input type="submit" value="Go">
-      </div>
-    </fieldset>
-  <% end %>
+        <div class="form-actions">
+          <input type="submit" value="Go">
+        </div>
+      </fieldset>
+    <% end %>
+  </section> <%# // .homepage%>
 
 <% end %>

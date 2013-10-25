@@ -1,3 +1,26 @@
-// Place all the styles related to the plans controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.homepage {
+
+  h1 {
+    font-family: $acaplans-stack1;
+    font-weight: 500;
+    font-size: 7em;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-family: $acaplans-stack2;
+    font-size: 2em;
+    font-weight: 500;
+    margin-top: 0;
+  }
+
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    legend {
+      display: none;
+    }
+  }
+}

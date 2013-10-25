@@ -4,13 +4,15 @@
     <p>
       Showing <%= Plan.level_name(@level) %>
       plans for <%= @plans.first.county.titleize %>,
-      <%= @plans.first.state.titleize %>.
+      <%= @plans.first.state.titleize %> (<%= @zip.code %>).
+      <span><%= link_to "Change my zip code!", root_url %></span>
     </p>
   <% else %>
     <p>
       Showing all plans for <%= @plans.first.county.titleize %>,
-      <%= @plans.first.state.titleize %>.
+      <%= @plans.first.state.titleize %> (<%= @zip.code %>).
       Select a plan level to filter.
+      <span><%= link_to "Change my zip code!", root_url %></span>
     </p>
   <% end %>
 

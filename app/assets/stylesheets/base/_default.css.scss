@@ -6,8 +6,11 @@ body {
   font-family: $base-font-family;
   font-size: 100%; // ~16 px
   font-weight: normal;
+  position: relative;
+} // body
+
+.nest {
   margin: 0 auto;
   padding: 1em;
-  position: relative;
   width: 90%;
-} // body
+}

@@ -33,6 +33,7 @@
 
 /* Load site styles */
 @import "base/_default.css.scss";
+@import "base/_forms.css.scss";
 @import "base/_buttons.css.scss";
 @import "base/tables/_tables.css.scss";
 
@@ -43,4 +44,5 @@
 @import "components/_modal.css.scss";
 
 /* Areas */
-@import "areas/plans.css.scss"
+@import "areas/_footer.css.scss";
+@import "areas/plans.css.scss";

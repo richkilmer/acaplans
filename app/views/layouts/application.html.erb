@@ -26,17 +26,22 @@
   <%= csrf_meta_tags %>
   </head>
   <body>
+    <header id="page_header">
 
-  <%= yield %>
+    </header> <%# // #page_header%>
 
-  <footer id="page_footer">
-    <p class="disclaimer">
-      This site is in no way, shape, or form affiliated with the United States
-      Government or the Department of Health and Human Services. We just wanted
-      to prove that you could make this data easily viewable without spending
-      $690 Million and three years.
-    </p>
-  </footer>
+    <div class="nest">
+      <%= yield %>
+    </div> <%# // .nest %>
+
+    <footer id="page_footer">
+      <p class="disclaimer">
+        This site is in no way, shape, or form affiliated with the United States
+        Government or the Department of Health and Human Services. We just wanted
+        to prove that you could make this data easily viewable without spending
+        $690 Million and three years.
+      </p> <%# // .disclaimer %>
+    </footer> <%# // #page_footer %>
 
   </body>
 </html>
